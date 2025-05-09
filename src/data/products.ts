@@ -1,0 +1,91 @@
+import { Product } from '../types';
+
+export const products: Product[] = [
+  {
+    id: '1',
+    name: 'COSMIC BEATS - Limited Edition Vinyl',
+    price: 29.99,
+    category: 'vinyl',
+    image: 'https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg',
+    description: 'Limited edition colored vinyl featuring the complete Cosmic Beats album with exclusive artwork.',
+    isLimitedEdition: true,
+  },
+  {
+    id: '2',
+    name: 'NEBULA NIGHTS - Vinyl',
+    price: 24.99,
+    category: 'vinyl',
+    image: 'https://images.pexels.com/photos/1626481/pexels-photo-1626481.jpeg',
+    description: 'Standard black vinyl release of the Nebula Nights album.',
+  },
+  {
+    id: '3',
+    name: 'RETROWAVE - Vinyl',
+    price: 24.99,
+    category: 'vinyl',
+    image: 'https://images.pexels.com/photos/2099655/pexels-photo-2099655.jpeg',
+    description: 'Standard black vinyl release of the Retrowave EP.',
+  },
+  {
+    id: '4',
+    name: 'COSMIC LOGO - Black T-Shirt',
+    price: 29.99,
+    category: 'apparel',
+    image: 'https://images.pexels.com/photos/4066293/pexels-photo-4066293.jpeg',
+    description: 'Black t-shirt with the iconic Cosmic logo in neon print.',
+    options: [
+      {
+        name: 'Size',
+        values: ['S', 'M', 'L', 'XL', 'XXL'],
+      },
+    ],
+  },
+  {
+    id: '5',
+    name: 'STELLAR NIGHTS - Hoodie',
+    price: 49.99,
+    category: 'apparel',
+    image: 'https://images.pexels.com/photos/5699163/pexels-photo-5699163.jpeg',
+    description: 'Premium black hoodie with Stellar Nights design on back and small logo on front.',
+    options: [
+      {
+        name: 'Size',
+        values: ['S', 'M', 'L', 'XL', 'XXL'],
+      },
+    ],
+  },
+  {
+    id: '6',
+    name: 'TOUR POSTER - 2024',
+    price: 14.99,
+    category: 'apparel',
+    image: 'https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg',
+    description: 'Official 2024 World Tour poster featuring all tour dates and exclusive artwork.',
+  },
+  {
+    id: '7',
+    name: 'NEBULA NIGHTS - Digital Album',
+    price: 9.99,
+    category: 'digital',
+    image: 'https://images.pexels.com/photos/1694900/pexels-photo-1694900.jpeg',
+    description: 'Digital download of the complete Nebula Nights album in high-quality MP3 and FLAC formats.',
+  },
+  {
+    id: '8',
+    name: 'COSMIC COLLECTION - Bundle',
+    price: 79.99,
+    category: 'bundle',
+    image: 'https://images.pexels.com/photos/1337753/pexels-photo-1337753.jpeg',
+    description: 'Ultimate fan bundle including Cosmic Beats vinyl, t-shirt, digital downloads, and exclusive stickers.',
+    isLimitedEdition: true,
+  },
+  {
+    id: '9',
+    name: 'GALACTIC GROOVES - Vinyl',
+    price: 24.99,
+    category: 'vinyl',
+    image: 'https://images.pexels.com/photos/3156381/pexels-photo-3156381.jpeg',
+    description: 'Standard black vinyl release of the Galactic Grooves album.',
+    isSoldOut: true,
+  },
+];
