@@ -9,6 +9,11 @@ export default defineConfig({
     host: true,
     open: true
   },
+  preview: {
+    port: 5173,
+    host: true,
+    allowedHosts: ['amjad-website.onrender.com']
+  },
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
