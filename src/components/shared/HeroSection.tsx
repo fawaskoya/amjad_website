@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface HeroSectionProps {
-  backgroundImage: string;
+  backgroundImage?: string;
   title: string;
   subtitle?: string;
   children?: React.ReactNode;
@@ -17,15 +17,19 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <div 
       className="relative min-h-screen flex items-center justify-center py-20"
-      style={{
+      style={backgroundImage ? {
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-      }}
+      } : {}}
     >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-transparent opacity-40" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-40" />
+      {backgroundImage && (
+        <>
+          {/* Dark overlay - only shown when there's a background image */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background to-transparent opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-40" />
+        </>
+      )}
       
       <div className="container mx-auto px-6 z-10 text-center">
         <motion.div

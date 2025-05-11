@@ -42,7 +42,6 @@ const Home: React.FC = () => {
       >
         {/* Hero Section */}
         <HeroSection
-          backgroundImage="/images/hero.png"
           title="AMJ"
           subtitle="Creating cosmic beats from the heart of Doha"
         >
@@ -64,7 +63,7 @@ const Home: React.FC = () => {
         </HeroSection>
 
         {/* About/Intro Section */}
-        <section className="py-20 bg-background">
+        <section className="py-20 bg-background/80 backdrop-blur-sm">
           <div className="container mx-auto px-6">
             <div className="flex flex-col lg:flex-row items-center gap-12">
               <motion.div 
@@ -359,8 +358,8 @@ const Home: React.FC = () => {
         )}
 
         {/* Newsletter Section */}
-        <section className="py-20 bg-background relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 opacity-20" />
+        <section className="py-20 bg-background/80 backdrop-blur-sm relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 opacity-20" />
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary to-secondary" />
           
           <div className="container mx-auto px-6 relative z-10">
