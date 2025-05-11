@@ -75,16 +75,20 @@ const MobileMenu = memo(({
         transition={{ duration: 0.3 }}
         className="md:hidden bg-background/95 backdrop-blur-md"
       >
-        <div className="container mx-auto px-6 py-6 space-y-4">
-          {navigationLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              label={link.label}
-              isActive={false}
-            />
-          ))}
-          <div className="pt-4 flex items-center space-x-6 border-t border-background-light">
+        <div className="container mx-auto px-6 py-6">
+          <nav className="flex flex-col space-y-6">
+            {navigationLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className="text-text-primary hover:text-primary transition-colors font-medium text-xl"
+                onClick={onClose}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="pt-6 mt-6 flex items-center space-x-6 border-t border-background-light">
             <SocialIcon href="https://instagram.com" icon={Instagram} label="Instagram" />
             <SocialIcon href="https://youtube.com" icon={Youtube} label="YouTube" />
             <CartButton count={cartCount} onClick={onCartClick} />
