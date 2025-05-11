@@ -56,7 +56,7 @@ const Events: React.FC = () => {
         
         {/* Event Tabs */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-background-lighter rounded-lg p-1">
+          <div className="inline-flex bg-background-light rounded-lg p-1">
             <button
               onClick={() => setActiveTab('upcoming')}
               className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${

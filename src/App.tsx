@@ -1,65 +1,55 @@
-import { Suspense, lazy, memo, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
-
-// Layouts - Keep these as regular imports since they're used on every page
+import { Suspense, lazy, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
+import LoadingSpinner from './components/shared/LoadingSpinner';
+import Cart from './components/cart/Cart';
+import { Toaster } from 'react-hot-toast';
+import { initGA, trackPageView } from './utils/analytics';
 
-// Lazy load pages for better initial load time
+// Lazy load pages
 const Home = lazy(() => import('./pages/Home'));
 const Shop = lazy(() => import('./pages/Shop'));
-const ProductDetail = lazy(() => import('./pages/ProductDetail'));
 const Music = lazy(() => import('./pages/Music'));
 const Events = lazy(() => import('./pages/Events'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+const Checkout = lazy(() => import('./pages/Checkout'));
 
-// Memoize ScrollToTop to prevent unnecessary re-renders
-const ScrollToTop = memo(() => {
-  const { pathname } = useLocation();
+const App = () => {
+  const location = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    initGA();
+  }, []);
 
-  return null;
-});
+  useEffect(() => {
+    trackPageView(location.pathname);
+  }, [location]);
 
-// Loading component for Suspense fallback
-const LoadingFallback = () => (
-  <div className="flex items-center justify-center min-h-screen bg-background">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-  </div>
-);
-
-// Memoize the main App component
-const App = memo(() => {
   return (
-    <Router>
-      <Header />
-      <ScrollToTop />
-      <Suspense fallback={<LoadingFallback />}>
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/shop/product/:id" element={<ProductDetail />} />
-            <Route path="/music" element={<Music />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AnimatePresence>
-      </Suspense>
-      <Footer />
-    </Router>
+    <>
+      <Toaster position="top-right" />
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-grow pt-24">
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/music" element={<Music />} />
+              <Route path="/events" element={<Events />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/checkout" element={<Checkout />} />
+            </Routes>
+          </Suspense>
+        </main>
+        <Footer />
+        <Cart />
+      </div>
+    </>
   );
-});
-
-App.displayName = 'App';
-ScrollToTop.displayName = 'ScrollToTop';
+};
 
 export default App;

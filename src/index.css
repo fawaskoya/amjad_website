@@ -1,15 +1,22 @@
+@import './styles/theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  --color-background: #1a120b;
+  --color-background-light: #23201a;
+  --color-primary: #c5a572;
+  --color-secondary: #6d466b;
+  --color-text-primary: #f5f3ef;
+  --color-text-secondary: #b8a89a;
 }
 
 body {
   @apply bg-background text-text-primary font-sans antialiased;
   overflow-x: hidden;
-  background: linear-gradient(to bottom, #1A0F2E, #2A1F3F);
+  background: linear-gradient(to bottom, #1a120b, #23201a);
   background-attachment: fixed;
 }
 
@@ -33,11 +40,11 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primary/60 rounded-full;
+  @apply bg-primary rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primary/80;
+  @apply bg-primary;
 }
 
 /* Custom styles for components */
@@ -47,27 +54,27 @@ html {
   }
 
   .btn-primary {
-    @apply btn bg-primary text-background hover:bg-primary/90 focus:ring-primary/50;
+    @apply btn bg-primary text-background hover:bg-primary focus:ring-primary;
   }
 
   .btn-secondary {
-    @apply btn bg-secondary text-text-primary hover:bg-secondary/90 focus:ring-secondary/50;
+    @apply btn bg-secondary text-text-primary hover:bg-secondary focus:ring-secondary;
   }
 
   .btn-outline {
-    @apply btn border-2 border-primary text-text-primary hover:bg-primary/10 focus:ring-primary/50;
+    @apply btn border-2 border-primary text-text-primary hover:bg-primary hover:text-background focus:ring-primary;
   }
 
   .input-field {
-    @apply w-full rounded-md bg-background-lighter/90 border border-primary/30 px-4 py-3 text-text-primary placeholder-text-muted focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary;
+    @apply w-full rounded-md bg-background-light border border-primary px-4 py-3 text-text-primary placeholder-text-secondary focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary;
   }
 
   .card {
-    @apply rounded-xl bg-background-light/90 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 border border-primary/10;
+    @apply rounded-xl bg-background-light p-6 shadow-lg backdrop-blur-sm transition-all duration-300 border border-primary;
   }
 
   .card-hover {
-    @apply card hover:shadow-glow hover:border-primary/30;
+    @apply card hover:shadow-glow hover:border-primary;
   }
 
   .section-padding {

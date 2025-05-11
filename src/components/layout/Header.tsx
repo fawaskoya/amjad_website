@@ -1,8 +1,12 @@
 import { useState, useEffect, memo, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Crown, ShoppingBag, Instagram, Youtube } from 'lucide-react';
-import { navigationLinks } from '../../data/social';
+import { Menu, X, Crown, Instagram, Youtube, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleCart } from '../../store/cartSlice';
+import type { RootState } from '../../store';
+import type { CartItem } from '../../store/cartSlice';
+import { navigationLinks } from '../../data/social';
 
 // Memoized navigation link component
 const NavLink = memo(({ to, label, isActive }: { to: string; label: string; isActive: boolean }) => (
@@ -33,18 +37,87 @@ const SocialIcon = memo(({ href, icon: Icon, label }: { href: string; icon: any;
 
 SocialIcon.displayName = 'SocialIcon';
 
+// Memoized cart button component
+const CartButton = memo(({ count, onClick }: { count: number; onClick: () => void }) => (
+  <button
+    onClick={onClick}
+    className="relative p-2 hover:bg-white/5 rounded-full transition-colors"
+  >
+    <ShoppingCart className="w-6 h-6" />
+    {count > 0 && (
+      <span className="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+        {count}
+      </span>
+    )}
+  </button>
+));
+
+CartButton.displayName = 'CartButton';
+
+// Memoized mobile menu component
+const MobileMenu = memo(({ 
+  isOpen, 
+  onClose, 
+  cartCount, 
+  onCartClick 
+}: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  cartCount: number;
+  onCartClick: () => void;
+}) => (
+  <AnimatePresence>
+    {isOpen && (
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.3 }}
+        className="md:hidden bg-background/95 backdrop-blur-md"
+      >
+        <div className="container mx-auto px-6 py-6 space-y-4">
+          {navigationLinks.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              label={link.label}
+              isActive={false}
+            />
+          ))}
+          <div className="pt-4 flex items-center space-x-6 border-t border-background-light">
+            <SocialIcon href="https://instagram.com" icon={Instagram} label="Instagram" />
+            <SocialIcon href="https://youtube.com" icon={Youtube} label="YouTube" />
+            <CartButton count={cartCount} onClick={onCartClick} />
+          </div>
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+));
+
+MobileMenu.displayName = 'MobileMenu';
+
 const Header = memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  // Memoize scroll handler
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 50);
   }, []);
 
+  const handleCartClick = useCallback(() => {
+    dispatch(toggleCart());
+  }, [dispatch]);
+
+  const handleMenuToggle = useCallback(() => {
+    setIsMenuOpen(prev => !prev);
+  }, []);
+
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
@@ -52,13 +125,10 @@ const Header = memo(() => {
     setIsMenuOpen(false);
   }, [location]);
 
-  // Memoize menu toggle handler
-  const toggleMenu = useCallback(() => {
-    setIsMenuOpen(prev => !prev);
-  }, []);
+  const cartItemsCount = cartItems.reduce((sum: number, item: CartItem) => sum + item.quantity, 0);
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
         isScrolled ? 'bg-background/95 backdrop-blur-md py-3 shadow-md' : 'bg-background/80 backdrop-blur-sm py-6'
       }`}
@@ -89,19 +159,13 @@ const Header = memo(() => {
         <div className="hidden md:flex items-center space-x-4">
           <SocialIcon href="https://instagram.com" icon={Instagram} label="Instagram" />
           <SocialIcon href="https://youtube.com" icon={Youtube} label="YouTube" />
-          <Link 
-            to="/shop" 
-            className="text-text-primary hover:text-primary transition-colors"
-            aria-label="Shop"
-          >
-            <ShoppingBag className="h-5 w-5" />
-          </Link>
+          <CartButton count={cartItemsCount} onClick={handleCartClick} />
         </div>
 
         {/* Mobile Menu Button */}
         <button
+          onClick={handleMenuToggle}
           className="md:hidden text-text-primary hover:text-primary transition-colors"
-          onClick={toggleMenu}
           aria-label="Toggle Menu"
         >
           {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -109,39 +173,12 @@ const Header = memo(() => {
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-background/95 backdrop-blur-md"
-          >
-            <div className="container mx-auto px-6 py-6 space-y-4">
-              {navigationLinks.map((link) => (
-                <NavLink
-                  key={link.path}
-                  to={link.path}
-                  label={link.label}
-                  isActive={location.pathname === link.path}
-                />
-              ))}
-              <div className="pt-4 flex items-center space-x-6 border-t border-background-lighter">
-                <SocialIcon href="https://instagram.com" icon={Instagram} label="Instagram" />
-                <SocialIcon href="https://youtube.com" icon={Youtube} label="YouTube" />
-                <Link 
-                  to="/shop" 
-                  className="text-text-primary hover:text-primary transition-colors"
-                  aria-label="Shop"
-                >
-                  <ShoppingBag className="h-5 w-5" />
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <MobileMenu 
+        isOpen={isMenuOpen} 
+        onClose={() => setIsMenuOpen(false)} 
+        cartCount={cartItemsCount}
+        onCartClick={handleCartClick}
+      />
     </header>
   );
 });

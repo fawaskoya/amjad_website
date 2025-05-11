@@ -170,7 +170,7 @@ const Music: React.FC = () => {
               href="https://spotify.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="card-hover flex items-center p-6 bg-background-lighter transition-colors hover:bg-background-lighter/80"
+              className="card-hover flex items-center p-6 bg-background-light transition-colors hover:bg-background-light"
             >
               <div className="bg-[#1DB954] p-3 rounded-full mr-4">
                 <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
@@ -188,7 +188,7 @@ const Music: React.FC = () => {
               href="https://music.apple.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="card-hover flex items-center p-6 bg-background-lighter transition-colors hover:bg-background-lighter/80"
+              className="card-hover flex items-center p-6 bg-background-light transition-colors hover:bg-background-light"
             >
               <div className="bg-[#FB233B] p-3 rounded-full mr-4">
                 <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
@@ -206,7 +206,7 @@ const Music: React.FC = () => {
               href="https://soundcloud.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="card-hover flex items-center p-6 bg-background-lighter transition-colors hover:bg-background-lighter/80"
+              className="card-hover flex items-center p-6 bg-background-light transition-colors hover:bg-background-light"
             >
               <div className="bg-[#FF5500] p-3 rounded-full mr-4">
                 <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">

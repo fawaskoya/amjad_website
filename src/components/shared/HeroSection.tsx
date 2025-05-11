@@ -24,8 +24,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
       }}
     >
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background to-transparent opacity-80" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background to-transparent opacity-40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-40" />
       
       <div className="container mx-auto px-6 z-10 text-center">
         <motion.div
@@ -34,8 +34,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           transition={{ duration: 0.8 }}
           className="max-w-3xl mx-auto"
         >
-          <h1 className="text-5xl md:text-7xl font-heading font-bold text-shadow mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+          <h1 className="text-5xl md:text-7xl font-cinzel font-bold text-shadow mb-6">
+            <span className="gold-gradient opacity-70">
               {title}
             </span>
           </h1>

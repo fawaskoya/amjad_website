@@ -9,7 +9,7 @@ export const socialLinks: SocialLinks = {
   appleMusic: 'https://music.apple.com'
 };
 
-export const navigationLinks: NavigationLink[] = [
+export const navigationLinks = [
   { path: '/', label: 'Home' },
   { path: '/shop', label: 'Shop' },
   { path: '/music', label: 'Music' },

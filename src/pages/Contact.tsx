@@ -218,7 +218,7 @@ const Contact: React.FC = () => {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center px-4 py-2 rounded-md bg-background-lighter hover:bg-background text-text-secondary hover:text-primary transition-colors"
+                  className="flex items-center px-4 py-2 rounded-md bg-background-light hover:bg-background text-text-secondary hover:text-primary transition-colors"
                 >
                   <Instagram className="h-5 w-5 mr-2" />
                   Instagram
@@ -228,7 +228,7 @@ const Contact: React.FC = () => {
                   href="https://youtube.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center px-4 py-2 rounded-md bg-background-lighter hover:bg-background text-text-secondary hover:text-primary transition-colors"
+                  className="flex items-center px-4 py-2 rounded-md bg-background-light hover:bg-background text-text-secondary hover:text-primary transition-colors"
                 >
                   <Youtube className="h-5 w-5 mr-2" />
                   YouTube
@@ -238,7 +238,7 @@ const Contact: React.FC = () => {
                   href="https://spotify.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center px-4 py-2 rounded-md bg-background-lighter hover:bg-background text-text-secondary hover:text-primary transition-colors"
+                  className="flex items-center px-4 py-2 rounded-md bg-background-light hover:bg-background text-text-secondary hover:text-primary transition-colors"
                 >
                   <Music className="h-5 w-5 mr-2" />
                   Spotify
@@ -248,7 +248,7 @@ const Contact: React.FC = () => {
                   href="https://soundcloud.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center px-4 py-2 rounded-md bg-background-lighter hover:bg-background text-text-secondary hover:text-primary transition-colors"
+                  className="flex items-center px-4 py-2 rounded-md bg-background-light hover:bg-background text-text-secondary hover:text-primary transition-colors"
                 >
                   <Headphones className="h-5 w-5 mr-2" />
                   SoundCloud
@@ -267,7 +267,7 @@ const Contact: React.FC = () => {
           
           <div className="rounded-lg overflow-hidden shadow-xl h-[400px] relative">
             {/* Placeholder for map - in a real application, use Google Maps or similar */}
-            <div className="absolute inset-0 bg-background-lighter"></div>
+            <div className="absolute inset-0 bg-background-light"></div>
             <div className="absolute inset-0 flex items-center justify-center flex-col">
               <MapPin className="h-12 w-12 text-primary mb-4" />
               <p className="text-text-primary text-xl font-medium">Music District</p>
