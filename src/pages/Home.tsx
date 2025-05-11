@@ -50,13 +50,13 @@ const Home: React.FC = () => {
               href={latestAlbum.spotifyUrl} 
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary w-full sm:w-auto text-center"
+              className="btn-primary"
             >
-              <Headphones className="mr-2 h-5 w-5 inline-block" /> Listen Now
+              <Headphones className="mr-2 h-5 w-5" /> Listen Now
             </a>
             {SHOW_SHOP_SECTION && (
-              <Link to="/shop" className="btn-outline w-full sm:w-auto text-center">
-                <ShoppingBag className="mr-2 h-5 w-5 inline-block" /> Shop Vinyl
+              <Link to="/shop" className="btn-outline">
+                <ShoppingBag className="mr-2 h-5 w-5" /> Shop Vinyl
               </Link>
             )}
           </div>

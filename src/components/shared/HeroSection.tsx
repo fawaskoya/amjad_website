@@ -31,12 +31,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         </>
       )}
       
-      <div className="container mx-auto px-6 z-10">
+      <div className="container mx-auto px-6 z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-2xl mx-auto bg-black/30 backdrop-blur-sm p-8 md:p-12 rounded-lg shadow-2xl border border-white/10"
+          className="max-w-3xl mx-auto"
         >
           <h1 className="text-5xl md:text-7xl font-cinzel font-bold text-shadow mb-6">
             <span className="gold-gradient opacity-70">
